@@ -7,7 +7,7 @@ end
 function M.setup(opts)
   opts = opts or {}
 
-  vim.api.nvim_create_usercommand("ThemePicker", M.say_hello, {})
+  vim.api.nvim_create_user_command("ThemePicker", M.say_hello, {})
 
   local keymap = opts.keymap or '<leader>ct'
 
