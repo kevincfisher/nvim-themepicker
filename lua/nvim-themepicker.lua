@@ -23,7 +23,7 @@ M.setup = function(opts)
   M.load_themes()
   vim.api.nvim_create_user_command("ThemePicker", M.select_theme, {})
 
-  local keymap = opts.keymap or '<leader>ct'
+  local keymap = opts.keymap or '<leader>tp'
 
   vim.keymap.set("n", keymap, M.select_theme, {
     desc = "Select from installed themes",
