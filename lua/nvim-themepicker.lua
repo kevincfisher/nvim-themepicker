@@ -5,7 +5,7 @@ M.say_hello = function ()
    prompt = "Select theme"
   },
   function(choice)
-    vim.cmd("colorscheme"..choice)
+    vim.cmd("colorscheme "..choice)
   end)
 end
 
