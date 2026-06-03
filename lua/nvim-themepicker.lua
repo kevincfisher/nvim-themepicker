@@ -5,13 +5,19 @@ M.themes = {}
 M.load_themes = function ()
   local loaded_themes = vim.fn.getcompletion('','color')
   for _,v in ipairs(loaded_themes) do
-    table.insert(M.themes, v)
+    local display_str = v.gsub("-", " ")
+    local theme_type = "builtin"
+    local item = { v = string.format("%s\t[%s]", display_str, theme_type)}
+    table.insert(M.themes, item)
   end
 end
 
 M.select_theme = function ()
  vim.ui.select(M.themes, {
-   prompt = "Select theme"
+   prompt = "Select theme",
+   format_item = function(item) {
+     print(item)
+   } 
   },
   function(choice)
     vim.cmd("colorscheme "..choice)
@@ -21,6 +27,7 @@ end
 M.setup = function(opts)
   opts = opts or {}
   M.load_themes()
+  
   vim.api.nvim_create_user_command("ThemePicker", M.select_theme, {})
 
   local keymap = opts.keymap or '<leader>tp'
