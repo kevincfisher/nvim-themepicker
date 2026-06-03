@@ -10,6 +10,7 @@ M.load_themes = function ()
     local theme_type = "builtin"
     local item = { v = string.format("%s\t[%s]", display_str, theme_type)}
     table.insert(M.themes, item)
+    print(M.themes)
   end
 end
 
@@ -18,7 +19,7 @@ M.select_theme = function ()
    prompt = "Select theme",
    format_item = function(item, i)
      local str = M.themes[i]
-     print(str)
+     print(str.tostring())
    end
   },
   function(choice)
