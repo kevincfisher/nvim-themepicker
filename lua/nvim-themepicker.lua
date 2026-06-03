@@ -21,7 +21,7 @@ M.select_theme = function ()
   table.sort(keys)
 
  vim.ui.select(keys, {
-   prompt = "Select theme",
+   prompt = "Select theme » ",
    format_item = function(item) return item end,
   },
   function(choice)
