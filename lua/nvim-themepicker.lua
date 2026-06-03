@@ -4,7 +4,7 @@ M.themes = {}
 
 M.load_themes = function ()
   local loaded_themes = vim.fn.getcompletion('','color')
-  themes.merge(loaded_themes)
+  M.themes.merge(loaded_themes)
 end
 
 M.select_theme = function ()
