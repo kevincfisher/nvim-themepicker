@@ -9,7 +9,7 @@ end
 
 M.build_theme_map = function()
   local map = {}
-  for _, name in ipairs(vim.fn.getcompletions('', 'color')) do
+  for _, name in ipairs(vim.fn.getcompletion('', 'color')) do
     map[M.to_display(name)] = name
   end
   return map
