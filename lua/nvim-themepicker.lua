@@ -5,7 +5,7 @@ M.themes = {}
 M.load_themes = function ()
   local loaded_themes = vim.fn.getcompletion('','color')
   for _,v in ipairs(loaded_themes) do
-    local display_str = v.gsub("-", " ")
+    local display_str = string.gsub(v, "-", " ")
     local theme_type = "builtin"
     local item = { v = string.format("%s\t[%s]", display_str, theme_type)}
     table.insert(M.themes, item)
