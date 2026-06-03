@@ -4,7 +4,9 @@ M.themes = {}
 
 M.load_themes = function ()
   local loaded_themes = vim.fn.getcompletion('','color')
-  M.themes.merge(loaded_themes)
+  for _,v in ipairs(loaded_themes) do
+    table.insert(M.themes, v)
+  end
 end
 
 M.select_theme = function ()
