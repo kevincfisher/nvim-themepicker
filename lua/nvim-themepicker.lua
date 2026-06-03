@@ -16,8 +16,9 @@ end
 M.select_theme = function ()
  vim.ui.select(M.themes, {
    prompt = "Select theme",
-   format_item = function(item) 
-     print(item)
+   format_item = function(item, i) 
+     let str = M.theme[i]
+     print(str)
    end
   },
   function(choice)
