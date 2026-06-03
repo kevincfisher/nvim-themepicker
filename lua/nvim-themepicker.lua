@@ -1,7 +1,7 @@
 local M = {};
 
 M.say_hello = function ()
- vim.ui.select({}, {
+ vim.ui.select({"kanagawa-wave", "kanagawa-dragon", "kanagawa-lotus"}, {
    prompt = "Select theme"
   },
   function(choice)
