@@ -1,15 +1,15 @@
 local M = {};
 
-fuction M.say_hello()
-vim.ui.select({}, {
-  prompt = "Select theme"
-},
-function(choice)
-  vim.cmd("colorscheme"..choice)
-end)
+M.say_hello = function ()
+ vim.ui.select({}, {
+   prompt = "Select theme"
+  },
+  function(choice)
+    vim.cmd("colorscheme"..choice)
+  end)
 end
 
-function M.setup(opts)
+M.setup = function(opts)
   opts = opts or {}
 
   vim.api.nvim_create_user_command("ThemePicker", M.say_hello, {})
