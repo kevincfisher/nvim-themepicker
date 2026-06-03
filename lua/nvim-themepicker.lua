@@ -1,7 +1,14 @@
 local M = {};
 
-M.say_hello = function ()
- vim.ui.select({"kanagawa-wave", "kanagawa-dragon", "kanagawa-lotus"}, {
+M.themes = {}
+
+M.load_themes = function ()
+  local loaded_themes = vim.fn.getcompletion('','color')
+  themes.tbl_extend(loaded_themes)
+end
+
+M.select_theme = function ()
+ vim.ui.select(M.themes, {
    prompt = "Select theme"
   },
   function(choice)
@@ -11,12 +18,12 @@ end
 
 M.setup = function(opts)
   opts = opts or {}
-
-  vim.api.nvim_create_user_command("ThemePicker", M.say_hello, {})
+  M.load_themes()
+  vim.api.nvim_create_user_command("ThemePicker", M.select_theme, {})
 
   local keymap = opts.keymap or '<leader>ct'
 
-  vim.keymap.set("n", keymap, M.say_hello, {
+  vim.keymap.set("n", keymap, M.select_theme, {
     desc = "Select from installed themes",
     silent = true
   })
