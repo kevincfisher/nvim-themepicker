@@ -1,7 +1,12 @@
 local M = {};
 
 fuction M.say_hello()
-print("Hello world")
+vim.ui.select({}, {
+  prompt = "Select theme"
+},
+function(choice)
+  vim.cmd("colorscheme"..choice)
+end)
 end
 
 function M.setup(opts)
