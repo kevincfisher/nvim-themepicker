@@ -10,7 +10,7 @@ M.load_themes = function ()
     local theme_type = "builtin"
     local item = { v = string.format("%s\t[%s]", display_str, theme_type)}
     table.insert(M.themes, item)
-    print(M.themes)
+    print(M.themes.tostring())
   end
 end
 
@@ -18,8 +18,7 @@ M.select_theme = function ()
  vim.ui.select(M.themes, {
    prompt = "Select theme",
    format_item = function(item, i)
-     local str = M.themes[i]
-     print(str.tostring())
+     M.themes.tostring()
    end
   },
   function(choice)
