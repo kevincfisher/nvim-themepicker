@@ -2,27 +2,33 @@ local M = {};
 
 M.themes = {}
 
-M.load_themes = function ()
-  local loaded_themes = vim.fn.getcompletion('','color')
-  for _,v in ipairs(loaded_themes) do
-    local display_str = string.gsub(v, "-", " ")
-    print('[nvim-themepicker] display_str: ' .. display_str)
-    local theme_type = "builtin"
-    local item = { v = string.format("%s\t[%s]", display_str, theme_type)}
-    table.insert(M.themes, item)
-    table.tostring(M.themes)
+
+M.to_display = function(name)
+  return (name:gsub('-', ' '):gsub('%f[%a]%a+', function(w)
+    return w:sub(1,1):upper() .. w:sub(2)
+  end))
+end
+
+M.build_theme_map = function()
+  local map = {}
+  for _, name in ipairs(vim.fn.getcompletions('', 'color')) do
+    map[M.to_display(name)] = name
   end
+  return map
 end
 
 M.select_theme = function ()
- vim.ui.select(M.themes, {
+  local map = M.build_theme_map()
+  local keys = vim.tbl_keys(map)
+  table.sort(keys)
+
+ vim.ui.select(keys, {
    prompt = "Select theme",
-   format_item = function(item, i)
-     return table.tostring(M.themes)
-   end
+   format_item = function(item) return item end,
   },
   function(choice)
-    vim.cmd("colorscheme "..choice)
+    if not choice then return end
+    vim.cmd.colorscheme(map[choice])
   end)
 end
 
