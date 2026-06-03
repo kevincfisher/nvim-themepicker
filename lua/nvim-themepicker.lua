@@ -1,8 +1,6 @@
 local M = {};
 
 M.themes = {}
-
-
 M.to_display = function(name)
   return (name:gsub('-', ' '):gsub('%f[%a]%a+', function(w)
     return w:sub(1,1):upper() .. w:sub(2)
@@ -34,8 +32,6 @@ end
 
 M.setup = function(opts)
   opts = opts or {}
-  M.load_themes()
-  
   vim.api.nvim_create_user_command("ThemePicker", M.select_theme, {})
 
   local keymap = opts.keymap or '<leader>tp'
